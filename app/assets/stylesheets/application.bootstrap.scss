@@ -1,2 +1,15 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+html, body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+.landing-page {
+    height: 100vh;
+    background-image: url("stormgate-background-1.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
