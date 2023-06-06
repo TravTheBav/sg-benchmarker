@@ -6,6 +6,19 @@ html, body {
     margin: 0;
 }
 
+.alert {
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+.notice {
+    background-color: $green-500;
+}
+
+.warning {
+    background-color: $red-500;
+}
+
 .landing-page {
     height: 100vh;
     background-image: url("stormgate-background-1.jpeg");
