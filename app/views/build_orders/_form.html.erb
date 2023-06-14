@@ -1,4 +1,4 @@
-<%= form_with model: [:user, @build_order], local: true do |form| %>
+<%= form_with model: [@user, @build_order], local: true do |form| %>
   <% if build_order.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(build_order.errors.count, "error") %> prohibited this build_order from being saved:</h2>

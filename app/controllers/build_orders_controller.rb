@@ -1,6 +1,6 @@
 class BuildOrdersController < ApplicationController
-  before_action :set_build_order, only: %i[ show edit update destroy ]
-  before_action :set_user
+  load_and_authorize_resource :user
+  load_and_authorize_resource :build_order, through: :user
 
   def index
     @build_orders = @user.build_orders
@@ -10,15 +10,12 @@ class BuildOrdersController < ApplicationController
   end
 
   def new
-    @build_order = BuildOrder.new
   end
 
   def edit
   end
 
   def create
-    @build_order = current_user.build_orders.new(build_order_params)
-
     respond_to do |format|
       if @build_order.save
         flash[:notice] = 'Build order saved'
@@ -31,7 +28,6 @@ class BuildOrdersController < ApplicationController
   end
 
   def update
-
     respond_to do |format|
       if @build_order.update(build_order_params)
         flash[:notice] = 'Build order updated'
@@ -53,16 +49,12 @@ class BuildOrdersController < ApplicationController
 
   private
 
-    def set_build_order
-      @build_order = BuildOrder.find(params[:id])
-    end
-
     def set_user
       @user = User.find(params[:user_id])
     end
 
     # Only allow a list of trusted parameters through
     def build_order_params
-      params.require(:build_order).permit(:name, :faction, :notes, :user_id)
+      params.require(:build_order).permit(:id, :name, :faction, :notes)
     end
 end

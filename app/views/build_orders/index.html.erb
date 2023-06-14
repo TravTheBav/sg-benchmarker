@@ -1,3 +1,5 @@
+<% provide(:title, "#{@user.username} | Build Orders") %>
+
 <h1>Build orders</h1>
 
 <div id="build_orders">
@@ -9,4 +11,6 @@
   <% end %>
 </div>
 
-<%= link_to "New build order", new_user_build_order_path(@user) %>
+<% if @user == current_user %>
+  <%= link_to "New build order", new_user_build_order_path(@user) %>
+<% end %>

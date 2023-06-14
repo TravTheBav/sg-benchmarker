@@ -1,4 +1,6 @@
+<% provide(:title, "#{@user.username}") %>
+
 <h1><%= @user.username %></h1>
 <p>email: <%= @user.email %></p>
 
-<div><%= link_to 'All build orders', user_build_orders_path(@user) %></div>
+<div><%= link_to 'Build orders', user_build_orders_path(@user) %></div>
