@@ -51,8 +51,11 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-# User auth and login
+# User authentication and login
 gem "devise"
+
+# User authorization
+gem "cancancan"
 
 # Testing for rails controllers
 gem "rails-controller-testing"

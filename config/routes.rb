@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/show'
   devise_for :users
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -11,5 +10,7 @@ Rails.application.routes.draw do
   get 'about', to: 'static_pages#about', as: :about
 
   # user routes
-  get 'profile', to: 'users#show'
+  resources :users do
+    resources :build_orders
+  end
 end

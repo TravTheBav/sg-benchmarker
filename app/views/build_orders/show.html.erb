@@ -1,0 +1,4 @@
+<%= render @build_order %>
+
+<%= link_to 'Edit build order', edit_user_build_order_path(@user, @build_order) %>
+<%= link_to 'Delete build order', user_build_order_path(@user, @build_order), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }  %>
