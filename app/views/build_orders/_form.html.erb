@@ -18,12 +18,20 @@
 
   <div>
     <%= form.label :faction, style: "display: block" %>
-    <%= form.text_field :faction %>
+    <%= form.select :faction, ['Resistance', 'Infernals'] %>
   </div>
 
   <div>
     <%= form.label :notes, style: "display: block" %>
     <%= form.text_area :notes %>
+  </div>
+  <hr/>
+
+  <h3>Steps</h3>
+  <div id="steps">
+    <%= form.fields_for :build_order_steps do |step_form| %>
+      <%= render "build_order_steps/form", form: step_form %>
+    <% end %>
   </div>
 
   <div>

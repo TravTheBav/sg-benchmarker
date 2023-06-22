@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import BuildOrderController from "./build_order_controller"
+application.register("build-order", BuildOrderController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

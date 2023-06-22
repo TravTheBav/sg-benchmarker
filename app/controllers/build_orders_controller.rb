@@ -10,6 +10,7 @@ class BuildOrdersController < ApplicationController
   end
 
   def new
+    @build_order.build_order_steps.build
   end
 
   def edit
@@ -49,12 +50,13 @@ class BuildOrdersController < ApplicationController
 
   private
 
-    def set_user
-      @user = User.find(params[:user_id])
-    end
-
     # Only allow a list of trusted parameters through
     def build_order_params
-      params.require(:build_order).permit(:id, :name, :faction, :notes)
+      params.require(:build_order).permit(
+        :name,
+        :faction,
+        :notes,
+        build_order_steps_attributes: {}
+      )
     end
 end

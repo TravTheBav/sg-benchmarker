@@ -42,6 +42,8 @@ gem "devise"
 # User authorization
 gem "cancancan"
 
+gem 'simple_form'
+
 # Testing for rails controllers
 gem "rails-controller-testing"
 
@@ -67,3 +69,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "importmap-rails", "~> 1.2"

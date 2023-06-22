@@ -13,4 +13,10 @@ Rails.application.routes.draw do
   resources :users do
     resources :build_orders
   end
+
+  resources :build_order_steps, only: [], param: :index do
+    member do
+      delete '(:id)' => "build_order_steps#destroy", as: ""
+    end
+  end
 end

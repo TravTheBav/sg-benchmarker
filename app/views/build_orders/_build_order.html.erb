@@ -14,6 +14,21 @@
     <%= build_order.notes %>
   </p>
 
+  <table>
+    <tr>
+      <th>Supply</th>
+      <th>Unit</th>
+      <th>Description</th>
+    </tr>
+    <% build_order.build_order_steps.each do |step| %>
+      <tr>
+        <td><%= step.supply %></td>
+        <td><%= step.unit %></td>
+        <td><%= step.description %></td>
+      </tr>
+    <% end %>
+  </table>
+
   <p>
     <strong>User:</strong>
     <%= build_order.user.username %>
