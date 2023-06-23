@@ -56,7 +56,7 @@ class BuildOrdersController < ApplicationController
         :name,
         :faction,
         :notes,
-        build_order_steps_attributes: {}
+        build_order_steps_attributes: [:id, :supply, :unit, :description, :_destroy]
       )
     end
 end

@@ -2,7 +2,7 @@
     <%= form.fields_for :build_order_steps, child_index: params[:index] do |step_form| %>
         <%= turbo_stream.replace "add-build-order-step" do %>
             <%= form.submit "Add step",
-                formaction: build_order_step_path(params[:index].to_i + 1),
+                formaction: build_order_step_path(step_form.index.to_i + 1),
                 formmethod: :post,
                 formnovalidate: true,
                 id: "add-build-order-step" %>
