@@ -34,6 +34,12 @@
     <% end %>
   </div>
 
+  <%= form.submit "Add step",
+    formaction: build_order_step_path(@build_order.build_order_steps.size),
+    formmethod: :post,
+    formnovalidate: true,
+    id: "add-build-order-step" %>
+
   <div>
     <%= form.submit %>
   </div>

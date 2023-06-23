@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :build_order_steps, only: [], param: :index do
     member do
       delete '(:id)' => "build_order_steps#destroy", as: ""
+      post '/' => "build_order_steps#create"
     end
   end
 end
