@@ -1,13 +1,10 @@
 <% provide(:title, "#{@user.username} | Build Orders") %>
 
-<h1>Build orders</h1>
+<h1 class="mt-4 display-4 text-center">Build orders | <%= @user.username %></h1>
 
 <div id="build_orders">
   <% @build_orders.each do |build_order| %>
     <%= render build_order %>
-    <p>
-      <%= link_to "Show this build order", user_build_order_path(@user, build_order) %>
-    </p>
   <% end %>
 </div>
 
