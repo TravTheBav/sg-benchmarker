@@ -1,3 +1,5 @@
 <% provide(:title, "#{@user.username} | Build Orders | #{@build_order.name}") %>
 
+<div class="m-4"><%= link_to 'Back to build orders', user_build_orders_path(@user) %></div>
+
 <%= render @build_order %>
