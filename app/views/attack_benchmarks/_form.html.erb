@@ -1,0 +1,17 @@
+
+<%= simple_form_for(@attack_benchmark) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :time %>
+    <%= f.input :map %>
+    <%= f.input :notes %>
+    <%= f.association :user %>
+    <%= f.association :build_order %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

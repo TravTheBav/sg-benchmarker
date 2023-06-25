@@ -1,0 +1,2 @@
+module AttackBenchmarksHelper
+end

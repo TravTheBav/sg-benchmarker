@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @attack_benchmark %>
+
+<div>
+  <%= link_to "Edit this attack benchmark", edit_attack_benchmark_path(@attack_benchmark) %> |
+  <%= link_to "Back to attack benchmarks", attack_benchmarks_path %>
+
+  <%= button_to "Destroy this attack benchmark", @attack_benchmark, method: :delete %>
+</div>

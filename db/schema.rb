@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_11_171553) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_25_224942) do
+  create_table "attack_benchmarks", force: :cascade do |t|
+    t.time "time"
+    t.string "map"
+    t.text "notes"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_attack_benchmarks_on_user_id"
+  end
+
   create_table "build_order_steps", force: :cascade do |t|
     t.string "supply"
     t.string "unit"
@@ -44,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_171553) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attack_benchmarks", "users"
   add_foreign_key "build_order_steps", "build_orders"
   add_foreign_key "build_orders", "users"
 end
