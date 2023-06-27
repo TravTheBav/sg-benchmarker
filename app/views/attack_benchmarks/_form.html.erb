@@ -1,17 +1,45 @@
-
-<%= simple_form_for(@attack_benchmark) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :time %>
-    <%= f.input :map %>
-    <%= f.input :notes %>
-    <%= f.association :user %>
-    <%= f.association :build_order %>
+<div class="px-md-5 py-4 mx-md-4 my-4">
+  <div class="container-md p-3 bg-body-secondary rounded-4 border-orange">
+    <%= form_with model: [@user, @attack_benchmark], local: true do |form| %>
+      <% if attack_benchmark.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(attack_benchmark.errors.count, "error") %> prohibited this benchmark from being saved:</h2>
+  
+          <ul>
+            <% attack_benchmark.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+  
+      <div class="form-row">
+          <%= form.label :time, style: "display: block", class: "fs-3" %>
+  
+          <!-- Time separator is used here to wrap minute and seconds time selects with a div for bootstrap styling purposes -->
+          <div class="form-group col-6 pe-1 inline-block">
+            <%= form.time_select :time, { discard_hour: true, include_seconds: true, prompt: true, time_separator: "</div><div class='form-group col-6 ps-1 inline-block'>" }, class: "form-control form-control-lg" %>
+          </div>
+      </div>
+  
+      <div class="form-group">
+        <%= form.label :map, style: "display: block", class: "fs-3" %>
+        <%= form.text_field :map, class: "form-control form-control-lg" %>
+      </div>
+  
+      <div class="form-group">
+        <%= form.label :notes, style: "display: block", class: "fs-3" %>
+        <%= form.text_area :notes, class: "form-control form-control-lg" %>
+      </div>
+      <hr/>
+  
+      <div>
+        <% if params[:action] == 'new' %>
+          <%= form.submit "Create benchmark", class: "btn btn-success my-2" %>
+        <% else %>
+          <%= form.submit "Update benchmark", class: "btn btn-success my-2" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+</div>

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :attack_benchmarks
   devise_for :users
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -10,9 +9,10 @@ Rails.application.routes.draw do
   get 'landing', to: 'static_pages#landing', as: :landing
   get 'about', to: 'static_pages#about', as: :about
 
-  # user routes
+  # user routes with scoped resources
   resources :users do
     resources :build_orders
+    resources :attack_benchmarks
   end
 
   resources :build_order_steps, only: [], param: :index do

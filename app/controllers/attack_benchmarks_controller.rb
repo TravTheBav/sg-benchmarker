@@ -1,9 +1,10 @@
 class AttackBenchmarksController < ApplicationController
-  before_action :set_attack_benchmark, only: %i[ show edit update destroy ]
+  load_and_authorize_resource :user
+  load_and_authorize_resource :attack_benchmark, through: :user
 
   # GET /attack_benchmarks or /attack_benchmarks.json
   def index
-    @attack_benchmarks = AttackBenchmark.all
+    @attack_benchmarks = @user.attack_benchmarks
   end
 
   # GET /attack_benchmarks/1 or /attack_benchmarks/1.json
@@ -12,7 +13,6 @@ class AttackBenchmarksController < ApplicationController
 
   # GET /attack_benchmarks/new
   def new
-    @attack_benchmark = AttackBenchmark.new
   end
 
   # GET /attack_benchmarks/1/edit
@@ -21,15 +21,13 @@ class AttackBenchmarksController < ApplicationController
 
   # POST /attack_benchmarks or /attack_benchmarks.json
   def create
-    @attack_benchmark = AttackBenchmark.new(attack_benchmark_params)
-
     respond_to do |format|
       if @attack_benchmark.save
-        format.html { redirect_to attack_benchmark_url(@attack_benchmark), notice: "Attack benchmark was successfully created." }
-        format.json { render :show, status: :created, location: @attack_benchmark }
+        flash[:notice] = 'Benchmark saved'
+        format.html { redirect_to controller: 'attack_benchmarks', action: 'show', id: @attack_benchmark.id, user_id: @attack_benchmark.user_id }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @attack_benchmark.errors, status: :unprocessable_entity }
+        flash.now[:alert] = 'Could not save benchmark'
+        render 'new'
       end
     end
   end
@@ -58,13 +56,11 @@ class AttackBenchmarksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_attack_benchmark
-      @attack_benchmark = AttackBenchmark.find(params[:id])
-    end
-
     # Only allow a list of trusted parameters through.
     def attack_benchmark_params
-      params.require(:attack_benchmark).permit(:time, :map, :notes, :user_id, :build_order_id)
+      params.require(:attack_benchmark).permit(
+        :time,
+        :map,
+        :notes)
     end
 end

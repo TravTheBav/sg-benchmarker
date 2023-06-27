@@ -22,7 +22,7 @@ class BuildOrdersController < ApplicationController
         flash[:notice] = 'Build order saved'
         format.html { redirect_to controller: 'build_orders', action: 'show', id: @build_order.id, user_id: @build_order.user_id }
       else
-        flash.now[:alert] = 'Build order was not saved'
+        flash.now[:alert] = 'Could not save build order'
         render 'new'
       end
     end

@@ -1,3 +1,5 @@
+<% provide(:title, "#{@user.username} | Benchmarks") %>
+
 <p style="color: green"><%= notice %></p>
 
 <h1>Attack benchmarks</h1>
@@ -6,9 +8,12 @@
   <% @attack_benchmarks.each do |attack_benchmark| %>
     <%= render attack_benchmark %>
     <p>
-      <%= link_to "Show this attack benchmark", attack_benchmark %>
+      <%= link_to "Show this benchmark", user_attack_benchmark_path(@user, attack_benchmark) %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New attack benchmark", new_attack_benchmark_path %>
+<div>
+  <%= link_to "New benchmark", new_user_attack_benchmark_path(@user) %>
+</div>
+
