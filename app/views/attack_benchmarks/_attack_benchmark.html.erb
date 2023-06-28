@@ -1,22 +1,37 @@
-<div id="<%= dom_id attack_benchmark %>">
-  <p>
-    <strong>Time:</strong>
-    <%= attack_benchmark.time %>
-  </p>
+<div class="px-md-5 py-4 mx-md-4 my-4">
+  <div class="container-md p-3 bg-body-secondary rounded-4 border-orange">
+    <div id="<%= dom_id attack_benchmark %>">
+      <h1 class="text-center">Benchmark #<%= attack_benchmark.id %></h1>
+      <hr/>
 
-  <p>
-    <strong>Map:</strong>
-    <%= attack_benchmark.map %>
-  </p>
+      <p class="fs-3"><strong>Time of attack:</strong> <%= attack_benchmark.formatted_time %> minutes</p>
+      <hr/>
 
-  <p>
-    <strong>Notes:</strong>
-    <%= attack_benchmark.notes %>
-  </p>
+      <p class="fs-3"><strong>Map:</strong> <%= attack_benchmark.map %></p>
+      <hr/>
 
-  <p>
-    <strong>User:</strong>
-    <%= attack_benchmark.user_id %>
-  </p>
+      <p class="fs-3"><strong>Match outcome:</strong> <%= attack_benchmark.match_outcome %></p>
+      <hr/>
 
+      <p class="fs-3"><strong>Notes:</strong></p>
+      <p class="fs-4"><%= attack_benchmark.notes %></p>
+      <hr/>
+
+      <p class="fs-3"><strong>Created on:</strong> <%= attack_benchmark.created_at.strftime("%m/%d/%Y") %></p>
+      <hr/>
+
+      <% if cannot? :manage, attack_benchmark %>
+        <p class="fs-3"><strong>Created by:</strong> <%= attack_benchmark.user.username %></p>
+        <hr/>
+      <% end %>
+
+      <% if current_page?(controller: "attack_benchmarks", action: "index") %>
+        <span style="margin-right: 10px"><%= link_to "Show", user_attack_benchmark_path(@user, attack_benchmark), class: "fs-6" %></span>
+      <% end %>
+      <% if can? :manage, attack_benchmark %>
+        <span style="margin-right: 10px"><%= link_to 'Edit', edit_user_attack_benchmark_path(@user, attack_benchmark), class: "fs-6" %></span>
+        <%= link_to 'Delete', user_attack_benchmark_path(@user, attack_benchmark), class: "fs-6", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+  </div>
 </div>

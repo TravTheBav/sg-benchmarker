@@ -1,4 +1,5 @@
-<p style="color: green"><%= notice %></p>
+<% provide(:title, "#{@user.username} | Benchmarks | #{@attack_benchmark.id}") %>
+
+<div class="m-4"><%= link_to 'Back to benchmarks', user_attack_benchmarks_path(@user) %></div>
 
 <%= render @attack_benchmark %>
-

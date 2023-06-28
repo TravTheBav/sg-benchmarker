@@ -4,11 +4,11 @@
       <h1 class="text-center"><%= build_order.name %></h1>
       <hr/>
 
-      <h2>Faction: <%= build_order.faction %></h2>
+      <p class="fs-3"><strong>Faction:</strong> <%= build_order.faction %></p>
       <hr/>
 
-      <h2>Notes:</h2>
-      <p class="fs-5"><%= build_order.notes %></p>
+      <p class="fs-3"><strong>Notes:</strong></p>
+      <p class="fs-4"><%= build_order.notes %></p>
       <hr/>
     
       <div class="table-responsive">
@@ -35,10 +35,8 @@
       </div>
     
       <% if cannot? :manage, build_order %>
-        <p>
-          <strong>Created by:</strong>
-          <%= build_order.user.username %>
-        </p>
+        <p class="fs-3"><strong>Created by:</strong> <%= build_order.user.username %></p>
+        <hr/>
       <% end %>
 
       <% if current_page?(controller: "build_orders", action: "index") %>

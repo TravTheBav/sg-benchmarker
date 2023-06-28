@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_25_224942) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_28_002131) do
   create_table "attack_benchmarks", force: :cascade do |t|
     t.time "time"
     t.string "map"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_25_224942) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "match_outcome"
     t.index ["user_id"], name: "index_attack_benchmarks_on_user_id"
   end
 

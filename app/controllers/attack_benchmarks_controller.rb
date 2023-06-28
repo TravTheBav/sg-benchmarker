@@ -61,6 +61,7 @@ class AttackBenchmarksController < ApplicationController
       params.require(:attack_benchmark).permit(
         :time,
         :map,
-        :notes)
+        :notes,
+        :match_outcome)
     end
 end
