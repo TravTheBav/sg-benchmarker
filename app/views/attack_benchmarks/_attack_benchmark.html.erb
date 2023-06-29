@@ -1,7 +1,7 @@
 <div class="px-md-5 py-4 mx-md-4 my-4">
   <div class="container-md p-3 bg-body-secondary rounded-4 border-orange">
     <div id="<%= dom_id attack_benchmark %>">
-      <h1 class="text-center">Benchmark #<%= attack_benchmark.id %></h1>
+      <h1 class="text-center"><%= attack_benchmark.build_order + ' - ' + attack_benchmark.formatted_date %></h1>
       <hr/>
 
       <p class="fs-3"><strong>Time of attack:</strong> <%= attack_benchmark.formatted_time %> minutes</p>
@@ -15,9 +15,6 @@
 
       <p class="fs-3"><strong>Notes:</strong></p>
       <p class="fs-4"><%= attack_benchmark.notes %></p>
-      <hr/>
-
-      <p class="fs-3"><strong>Created on:</strong> <%= attack_benchmark.created_at.strftime("%m/%d/%Y") %></p>
       <hr/>
 
       <% if cannot? :manage, attack_benchmark %>

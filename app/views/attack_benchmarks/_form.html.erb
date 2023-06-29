@@ -12,6 +12,11 @@
           </ul>
         </div>
       <% end %>
+
+      <div class="form-group">
+        <%= form.label :build_order, style: "display: block", class: "fs-3" %>
+        <%= form.select :build_order, @user.build_orders.map { |bo| bo.name }, {}, class: "form-control form-control-lg" %>
+      </div>
   
       <div class="form-row">
           <%= form.label :time, style: "display: block", class: "fs-3" %>

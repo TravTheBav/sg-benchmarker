@@ -56,6 +56,7 @@ class AttackBenchmarksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def attack_benchmark_params
       params.require(:attack_benchmark).permit(
+        :build_order,
         :time,
         :map,
         :notes,

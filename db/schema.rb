@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_28_002131) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_143041) do
   create_table "attack_benchmarks", force: :cascade do |t|
     t.time "time"
     t.string "map"
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_002131) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "match_outcome"
+    t.string "build_order"
     t.index ["user_id"], name: "index_attack_benchmarks_on_user_id"
   end
 
@@ -42,6 +43,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_002131) do
     t.index ["user_id"], name: "index_build_orders_on_user_id"
   end
 
+  create_table "units", force: :cascade do |t|
+    t.string "type"
+    t.string "quantity"
+    t.integer "attack_benchmark_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attack_benchmark_id"], name: "index_units_on_attack_benchmark_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -58,4 +68,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_002131) do
   add_foreign_key "attack_benchmarks", "users"
   add_foreign_key "build_order_steps", "build_orders"
   add_foreign_key "build_orders", "users"
+  add_foreign_key "units", "attack_benchmarks"
 end
