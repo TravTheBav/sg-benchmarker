@@ -49,6 +49,13 @@
           <%= render "units/form", form: unit_form %>
         <% end %>      
       </div>
+
+      <%= form.submit "Add unit",
+          class: "btn btn-primary my-2",
+          formaction: unit_path(@attack_benchmark.units.size),
+          formmethod: :post,
+          formnovalidate: true,
+          id: "add-unit" %>
   
       <div>
         <% if params[:action] == 'new' %>

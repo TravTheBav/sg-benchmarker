@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :units, only: [], param: :index do
     member do
       delete '(:id)' => "units#destroy", as: ""
+      post '/' => "units#create"
     end
   end
 end
