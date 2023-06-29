@@ -48,8 +48,7 @@ class AttackBenchmarksController < ApplicationController
     @attack_benchmark.destroy
 
     respond_to do |format|
-      format.html { redirect_to attack_benchmarks_url, notice: "Attack benchmark was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to user_attack_benchmarks_path(user_id: current_user.id), notice: 'Benchmark was destroyed' }
     end
   end
 
