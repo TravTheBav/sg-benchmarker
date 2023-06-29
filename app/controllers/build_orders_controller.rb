@@ -23,7 +23,7 @@ class BuildOrdersController < ApplicationController
         format.html { redirect_to controller: 'build_orders', action: 'show', id: @build_order.id, user_id: @build_order.user_id }
       else
         flash.now[:alert] = 'Could not save build order'
-        render 'new'
+        format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
@@ -35,7 +35,7 @@ class BuildOrdersController < ApplicationController
         format.html { redirect_to controller: 'build_orders', action: 'show', id: @build_order.id, user_id: @build_order.user_id }
       else
         flash.now[:alert] = 'Could not update build order'
-        render 'edit'
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end

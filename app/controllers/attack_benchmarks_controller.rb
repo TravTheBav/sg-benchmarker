@@ -40,7 +40,7 @@ class AttackBenchmarksController < ApplicationController
         format.html { redirect_to controller: 'attack_benchmarks', action: 'show', id: @attack_benchmark.id, user_id: @attack_benchmark.user_id }
       else
         flash.now[:alert] = 'Could not update benchmark'
-        format.html { render 'edit' }
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end

@@ -44,7 +44,7 @@
         id: "add-build-order-step" %>
 
       <div>
-        <% if params[:action] == 'new' %>
+        <% if params[:action] == 'new' || params[:action] == 'create' %>
           <%= form.submit "Create build order", class: "btn btn-success my-2" %>
         <% else %>
           <%= form.submit "Update build order", class: "btn btn-success my-2" %>
