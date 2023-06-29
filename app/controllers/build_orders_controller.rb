@@ -34,7 +34,7 @@ class BuildOrdersController < ApplicationController
         flash[:notice] = 'Build order updated'
         format.html { redirect_to controller: 'build_orders', action: 'show', id: @build_order.id, user_id: @build_order.user_id }
       else
-        flash.now[:alert] = 'Build order was not updated'
+        flash.now[:alert] = 'Could not update build order'
         render 'edit'
       end
     end

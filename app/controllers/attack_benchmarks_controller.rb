@@ -32,20 +32,18 @@ class AttackBenchmarksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /attack_benchmarks/1 or /attack_benchmarks/1.json
   def update
     respond_to do |format|
       if @attack_benchmark.update(attack_benchmark_params)
-        format.html { redirect_to attack_benchmark_url(@attack_benchmark), notice: "Attack benchmark was successfully updated." }
-        format.json { render :show, status: :ok, location: @attack_benchmark }
+        flash[:notice] = 'Benchmark updated'
+        format.html { redirect_to controller: 'attack_benchmarks', action: 'show', id: @attack_benchmark.id, user_id: @attack_benchmark.user_id }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @attack_benchmark.errors, status: :unprocessable_entity }
+        flash.now[:alert] = 'Could not update benchmark'
+        render 'edit'
       end
     end
   end
 
-  # DELETE /attack_benchmarks/1 or /attack_benchmarks/1.json
   def destroy
     @attack_benchmark.destroy
 
