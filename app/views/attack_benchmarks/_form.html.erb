@@ -58,7 +58,7 @@
           id: "add-unit" %>
   
       <div>
-        <% if params[:action] == 'new' %>
+        <% if params[:action] == 'new' || params[:action] == 'create' %>
           <%= form.submit "Create benchmark", class: "btn btn-success my-2" %>
         <% else %>
           <%= form.submit "Update benchmark", class: "btn btn-success my-2" %>
