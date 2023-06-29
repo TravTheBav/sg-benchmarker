@@ -13,6 +13,7 @@ class AttackBenchmarksController < ApplicationController
 
   # GET /attack_benchmarks/new
   def new
+    @attack_benchmark.units.build
   end
 
   # GET /attack_benchmarks/1/edit
@@ -53,6 +54,7 @@ class AttackBenchmarksController < ApplicationController
   end
 
   private
+  
     # Only allow a list of trusted parameters through.
     def attack_benchmark_params
       params.require(:attack_benchmark).permit(
@@ -60,6 +62,8 @@ class AttackBenchmarksController < ApplicationController
         :time,
         :map,
         :notes,
-        :match_outcome)
+        :match_outcome,
+        units_attributes: [:id, :unit_type, :quantity, :_destroy]
+      )
     end
 end

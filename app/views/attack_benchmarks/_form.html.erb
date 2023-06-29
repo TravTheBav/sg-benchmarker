@@ -42,6 +42,13 @@
         <%= form.text_area :notes, class: "form-control form-control-lg" %>
       </div>
       <hr/>
+
+      <h2>Units</h2>
+      <div id="units">
+        <%= form.fields_for :units do |unit_form| %>
+          <%= render "units/form", form: unit_form %>
+        <% end %>      
+      </div>
   
       <div>
         <% if params[:action] == 'new' %>

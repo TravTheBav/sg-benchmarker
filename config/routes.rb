@@ -15,10 +15,18 @@ Rails.application.routes.draw do
     resources :attack_benchmarks
   end
 
+  # routes for adding and deleting build order steps
   resources :build_order_steps, only: [], param: :index do
     member do
       delete '(:id)' => "build_order_steps#destroy", as: ""
       post '/' => "build_order_steps#create"
+    end
+  end
+
+  # routes for adding and deleting benchmark units
+  resources :units, only: [], param: :index do
+    member do
+      delete '(:id)' => "units#destroy", as: ""
     end
   end
 end

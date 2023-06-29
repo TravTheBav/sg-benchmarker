@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_29_143041) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_150432) do
   create_table "attack_benchmarks", force: :cascade do |t|
     t.time "time"
     t.string "map"
@@ -44,8 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_143041) do
   end
 
   create_table "units", force: :cascade do |t|
-    t.string "type"
-    t.string "quantity"
+    t.string "unit_type"
+    t.integer "quantity"
     t.integer "attack_benchmark_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
