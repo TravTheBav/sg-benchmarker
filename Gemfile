@@ -44,6 +44,9 @@ gem "cancancan"
 
 gem 'simple_form'
 
+gem 'bootstrap', '~> 5.1', '>= 5.1.3'
+gem 'sassc-rails'
+
 # Testing for rails controllers
 gem "rails-controller-testing"
 
