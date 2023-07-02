@@ -3,7 +3,7 @@ class BuildOrdersController < ApplicationController
   load_and_authorize_resource :build_order, through: :user
 
   def index
-    @build_orders = @user.build_orders
+    @build_orders = BuildOrder.search(@user, params)
   end
 
   def show
