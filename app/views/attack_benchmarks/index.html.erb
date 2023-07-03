@@ -6,8 +6,27 @@
 
 <h1 class="mt-4 display-4 text-center">Benchmarks | <%= @user.username %></h1>
 
-<div id="attack_benchmarks">
-  <% @attack_benchmarks.each do |attack_benchmark| %>
-    <%= render attack_benchmark %>
-  <% end %>
+<div class="px-md-5 py-4 mx-md-4 my-4">
+  <div class="container-md p-0">
+    <%= form_tag user_attack_benchmarks_path(user_id: @user.id), method: :get,
+     data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search",
+     action: "input->search#submit" } do |f| %>
+      <%= text_field_tag "query", nil, placeholder: "Search ...", class: "form-control my-2 me-2" %>
+      
+      <div class="form-group">
+        <%= label_tag "Search by" %>:
+        <%= select_tag "search_criteria", options_for_select(%w[ build\ order map match\ outcome ]), class: "form-control" %>
+      </div>
+      
+      <%= submit_tag "Search", class: "btn btn-success my-2 me-2" %>
+    <% end %>
+  </div>
+
+  <div id="attack_benchmarks">
+    <%= turbo_frame_tag "search-results", target: "_top" do %>
+      <% @attack_benchmarks.each do |attack_benchmark| %>
+        <%= render attack_benchmark %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

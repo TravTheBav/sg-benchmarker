@@ -4,7 +4,7 @@ class AttackBenchmarksController < ApplicationController
 
   # GET /attack_benchmarks or /attack_benchmarks.json
   def index
-    @attack_benchmarks = @user.attack_benchmarks
+    @attack_benchmarks = AttackBenchmark.search(@user, params)
   end
 
   # GET /attack_benchmarks/1 or /attack_benchmarks/1.json
