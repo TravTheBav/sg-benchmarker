@@ -15,10 +15,21 @@
       
       <div class="form-group">
         <%= label_tag "Search by" %>:
-        <%= select_tag "search_criteria", options_for_select(%w[ build\ order map match\ outcome ]), class: "form-control" %>
+        <%= select_tag "search_criteria", options_for_select(%w[ build\ order map match\ outcome ]), class: "form-control my-2" %>
+      </div>
+
+      <div class="row g-3">
+        <div class="form-group col-md-6">
+          <%= label_tag "From" %>:
+          <%= date_field_tag "date_from", nil, class: "form-control my-2" %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= label_tag "To" %>:
+          <%= date_field_tag "date_to", nil, class: "form-control my-2" %>
+        </div>
       </div>
       
-      <%= submit_tag "Search", class: "btn btn-success my-2 me-2" %>
+      <%= submit_tag "Search", class: "btn btn-success my-2" %>
     <% end %>
   </div>
 

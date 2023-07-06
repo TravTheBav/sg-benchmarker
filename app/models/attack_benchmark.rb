@@ -17,21 +17,34 @@ class AttackBenchmark < ApplicationRecord
 
   def self.search(user, params)
     if params[:query].blank?
-      user.attack_benchmarks.all
+      db_query = user.attack_benchmarks.all
     else
       criteria = format_search_criteria(params[:search_criteria])
-      user.attack_benchmarks.where(
-        sanitize_sql_for_conditions(["#{criteria} LIKE ?", "%#{params[:query]}%"]))
+      db_query = user.attack_benchmarks.where("#{criteria} LIKE ?",
+        AttackBenchmark.sanitize_sql_like(params[:query]) + "%"
+      )
     end
+
+    if !params[:date_from].blank? && !params[:date_to].blank?
+      date_from = DateTime.strptime(params[:date_from], '%Y-%m-%d')
+      date_to = DateTime.strptime(params[:date_to], '%Y-%m-%d')
+      db_query = db_query.where(created_at: (date_from.beginning_of_day..date_to.end_of_day))
+    end
+
+    db_query
   end
 
-  def self.format_search_criteria(str)
-    output = ""
-    str.each_char do |char|
-      char = "_" if char == " "
+  private
 
-      output += char
+    # helper for search method
+    def self.format_search_criteria(str)
+      output = ""
+      str.each_char do |char|
+        char = "_" if char == " "
+
+        output += char
+      end
+      output
     end
-    output
-  end
+
 end
