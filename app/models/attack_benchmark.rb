@@ -31,7 +31,7 @@ class AttackBenchmark < ApplicationRecord
       db_query = db_query.where(created_at: (date_from.beginning_of_day..date_to.end_of_day))
     end
 
-    db_query
+    db_query.order(created_at: :desc)
   end
 
   private
