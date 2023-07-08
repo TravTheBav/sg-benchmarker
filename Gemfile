@@ -47,6 +47,10 @@ gem 'simple_form'
 gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 gem 'sassc-rails'
 
+# Pagination
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'
+
 # Testing for rails controllers
 gem "rails-controller-testing"
 
