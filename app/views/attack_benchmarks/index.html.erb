@@ -6,7 +6,7 @@
 
 <h1 class="mt-4 display-4 text-center">Benchmarks | <%= @user.username %></h1>
 
-<div class="px-md-5 py-4 mx-md-4 my-4">
+<div class="container-fluid my-5">
   <div class="container-md p-0">
     <%= form_tag user_attack_benchmarks_path(user_id: @user.id), method: :get,
      data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search",
