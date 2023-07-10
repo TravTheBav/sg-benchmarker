@@ -24,14 +24,20 @@ p "Created #{ User.count } user"
 user.build_orders.build([
     { name: "3-rax", faction: "Resistance", notes: "Lorem ipsum" },
     { name: "4-gate", faction: "Infernals", notes: "Hello there" },
-    { name: "2 vulcan evac drop", faction: "Resistance", notes: "Early harass and pressure on chicken camp"}
+    { name: "2 vulcan evac drop", faction: "Resistance", notes: "Early harass and pressure on chicken camp"},
+    { name: "2-factory", faction: "Resistance", notes: "5 Atlas around 10 minutes"},
+    { name: "BOB rush", faction: "Resistance", notes: "pull tha boyz" },
+    { name: "SCOUT rush", faction: "Resistance", notes: "rush the enemy base before 7 minutes with about 15 scouts" },
+    { name: "3-gate", faction: "Resistance" },
+    { name: "3-starport", faction: "Infernals" },
+    { name: "3 vulcan through trees", faction: "Resistance" }
 ])
 user.build_orders.each { |bo| bo.save }
 
 p "Created #{ BuildOrder.count } build orders"
 
 # Seed benchmarks through user
-build_orders = ["3-rax", "4-gate", "2 vulcan evac drop"]
+build_orders = BuildOrder.all.map { |bo| bo.name }
 maps = ["Glittering Ash", "Neon Violet", "Steppes of War", "Blackbird"]
 match_outcomes = ["Win", "Loss", "Tie"]
 
