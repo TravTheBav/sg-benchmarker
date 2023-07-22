@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  supply: MyString
+  unit: MyString
+  description: MyText
+  build_order: one
+
+two:
+  supply: MyString
+  unit: MyString
+  description: MyText
+  build_order: two

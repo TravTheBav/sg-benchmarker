@@ -1,0 +1,59 @@
+<div class="container-md my-4 p-3 bg-body-secondary rounded-4 border-orange">
+  <div id="<%= dom_id build_order %>">
+    <h1 class="text-center"><%= build_order.name %></h1>
+    <hr/>
+    <p class="fs-3"><strong>Faction:</strong> <%= build_order.faction %></p>
+    <hr/>
+    <div class="accordion accordion-flush mb-4" id="buildOrderDetails_<%= build_order.id %>">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading_<%= build_order.id %>">
+          <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse"
+           data-bs-target="#collapse_<%= build_order.id %>" aria-expanded="false" aria-controls="collapse_<%= build_order.id %>">Details</button>
+        </h2>
+        <div id="collapse_<%= build_order.id %>" class="accordion-collapse collapse" data-bs-parent="#buildOrderDetails_<%= build_order.id %>"
+         aria-labelledby="heading_<%= build_order.id %>">
+          <div class="accordion-body">
+            <p class="fs-3"><strong>Notes:</strong></p>
+            <p class="fs-4"><%= build_order.notes %></p>
+            <hr/>
+            <p class="fs-3"><strong>Steps:</strong></p>
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-dark">
+                <thead>
+                  <tr>
+                    <th class="fs-5" scope="col">#</th>
+                    <th class="fs-5" scope="col">Supply</th>
+                    <th class="fs-5" scope="col">Unit</th>
+                    <th class="fs-5" scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% build_order.build_order_steps.each_with_index do |step, idx| %>
+                    <tr>
+                      <th class="fs-5" scope="row"><%= idx + 1 %></th>
+                      <td class="fs-5"><%= step.supply %></td>
+                      <td class="fs-5"><%= step.unit %></td>
+                      <td class="fs-5"><%= step.description %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <hr/>
+            <% if cannot? :manage, build_order %>
+              <p class="fs-3"><strong>Created by:</strong> <%= build_order.user.username %></p>
+              <hr/>
+            <% end %>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <% if current_page?(controller: "build_orders", action: "index") %>
+      <span style="margin-right: 10px"><%= link_to "Show", user_build_order_path(@user, build_order), class: "fs-6" %></span>
+    <% end %>
+    <% if can? :manage, build_order %>
+      <span style="margin-right: 10px"><%= link_to 'Edit', edit_user_build_order_path(@user, build_order), class: "fs-6" %></span>
+      <%= link_to 'Delete', user_build_order_path(@user, build_order), class: "fs-6", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    <% end %>    
+  </div>
+</div>

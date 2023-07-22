@@ -1,0 +1,16 @@
+<%= fields model: @build_order do |form| %>
+    <%= form.fields_for :build_order_steps, child_index: params[:index] do |step_form| %>
+        <%= turbo_stream.replace "add-build-order-step" do %>
+            <%= form.submit "Add step",
+                class: "btn btn-primary my-2",
+                formaction: build_order_step_path(step_form.index.to_i + 1),
+                formmethod: :post,
+                formnovalidate: true,
+                id: "add-build-order-step" %>
+        <% end %>
+
+        <%= turbo_stream.append "steps" do %>
+            <%= render "form", form: step_form %>
+        <% end %>
+    <% end %>
+<% end %>

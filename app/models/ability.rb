@@ -11,7 +11,7 @@ class Ability
       can :account_info, User, id: user.id
       can :manage, User, id: user.id
       can :manage, BuildOrder, user_id: user.id
-      can :manage, AttackBenchmark, user_id: user.id
+      # can :manage, AttackBenchmark, user_id: user.id
     end   
   end
 end

@@ -1,0 +1,28 @@
+<% provide(:title, "#{@user.username} | Build Orders") %>
+
+<% if @user == current_user %>
+  <div class="m-4"><%= link_to "New build order", new_user_build_order_path(@user) %></div>
+<% end %>
+
+<h1 class="mt-4 display-4 text-center">Build orders | <%= @user.username %></h1>
+
+<div class="container-fluid my-5">
+  <div class="container-md p-0">
+    <%= form_tag user_build_orders_path(user_id: @user.id), method: :get,
+     data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search",
+     action: "input->search#submit" } do |f| %>
+      <%= text_field_tag "query", existing_input(:query), placeholder: "Search by title ...", class: "form-control my-2 me-2" %>
+      <%= submit_tag "Search", class: "btn btn-success my-2 me-2" %>
+    <% end %>
+  </div>
+  
+  <div id="build_orders">
+    <%= turbo_frame_tag "search-results", target: "_top" do %>
+      <%= paginate @build_orders, theme: 'bootstrap-5', pagination_class: 'flex-wrap justify-content-center' %>
+        <% @build_orders.each do |build_order| %>
+          <%= render build_order %>
+        <% end %>
+      <%= paginate @build_orders, theme: 'bootstrap-5', pagination_class: 'flex-wrap justify-content-center' %>
+    <% end %>
+  </div>
+</div>

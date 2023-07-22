@@ -1,0 +1,24 @@
+<%= turbo_frame_tag "build_order_step_#{form.index}" do %>
+    <%= form.hidden_field :id %>
+
+    <div>
+      <%= form.label :supply, style: "display: block", class: "fs-4" %>
+      <%= form.text_field :supply, class: "form-control form-control-lg" %>
+    </div>
+    <div>
+      <%= form.label :unit, style: "display: block", class: "fs-4" %>
+      <%= form.text_field :unit, class: "form-control form-control-lg" %>
+    </div>
+    <div>
+      <%= form.label :description , style: "display: block", class: "fs-4" %>
+      <%= form.text_area :description, class: "form-control form-control-lg" %>
+    </div>
+
+    <%= form.submit "Remove",
+        class: "btn btn-danger my-2",
+        formaction: build_order_step_path(form.index, form.object.id),
+        formmethod: :delete,
+        formnovalidate: true,
+        data: { turbo_frame: "build_order_step_#{form.index}" } %>
+    <hr/>
+<% end %>
