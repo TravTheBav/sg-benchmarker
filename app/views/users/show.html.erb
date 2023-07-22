@@ -1,0 +1,37 @@
+<% provide(:title, "#{@user.username} | Dashboard") %>
+
+<h1 class="my-5 display-4 text-center"><%= @user.username %></h1>
+
+<div class="container-fluid my-5">
+    <div class="row my-5 justify-content-evenly">
+        <div class="col-sm-5 mb-3">
+            <div class="card">
+                <img src=<%= image_url('chicken.png') %> class="card-img-top" alt="chicken">
+                <div class="card-body">
+                    <h3 class="card-title">Build Orders</h3>
+                    <p class="fs-4">
+                        Create, update, and search for all of your build orders here. Once
+                        a build order is made it will be available for selection for any new
+                        benchmarks!                        
+                    </p>
+                    <%= link_to 'Build orders', user_build_orders_path(@user), class: "btn btn-primary" %>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="card">
+                <img src=<%= image_url('benchmark-card-img.png') %> class="card-img-top" alt="battle">
+                <div class="card-body">
+                    <h3 class="card-title">Benchmarks</h3>
+                    <p class="fs-4">
+                        Knowing build orders is the first step to success, but if you aren't benchmarking your games how
+                        can you tell if you're actually improving? After each 1v1 match, come here to enter
+                        in your benchmark. All benchmarks will be easily searchable, whether you decide to filter
+                        by date or by build order. Tracking your progress has never been more straight forward!
+                    </p>
+                    <%= link_to 'Benchmarks', user_attack_benchmarks_path(@user), class: "btn btn-primary" %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

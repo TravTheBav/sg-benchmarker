@@ -1,0 +1,45 @@
+<% provide(:title, "Sign Up") %>
+
+<div class="container-fluid my-5">
+  <div class="container-md p-md-5 bg-body-secondary rounded-4">
+    <h2 class="display-4 text-center py-4">Sign up</h2>
+    <hr class="my-4">
+  
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6">
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          
+          <div class="field my-3">
+            <%= f.label :email, class: "form-label fs-4" %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+          </div>
+
+          <div class="field my-3">
+            <%= f.label :username, class: "form-label fs-4" %><br />
+            <%= f.text_field :username, class: "form-control" %>
+          </div>
+
+          <div class="field my-3">
+            <%= f.label :password, class: "form-label fs-4" %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />            
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          </div>
+
+          <div class="field my-3">
+            <%= f.label :password_confirmation, class: "form-label fs-4" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          </div>
+
+          <div class="actions my-3 pt-2">
+            <%= f.submit "Sign up", class: "btn btn-primary btn-lg" %>
+          </div>
+          <p class="fs-4">Already a member? <%= link_to 'Sign in', new_user_session_path %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

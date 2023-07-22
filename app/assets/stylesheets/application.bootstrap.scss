@@ -1,2 +1,51 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+html, body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+.alert {
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+.notice {
+    background-color: $green-500;
+}
+
+.warning {
+    background-color: $red-500;
+}
+
+.border-orange {
+    border: solid 2px $orange-600;
+}
+
+.landing-page {
+    height: 100vh;
+    background-image: url("stormgate-background-1.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.about-page {
+    height: 45vh;
+    background-image: url("about-page-top.png");
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.error {
+    color: red;
+}
+
+.admin-button {
+    border-radius: 0px;
+}

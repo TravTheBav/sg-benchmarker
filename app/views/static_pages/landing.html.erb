@@ -1,0 +1,17 @@
+<% provide(:title, "Welcome") %>
+
+<div class="landing-page py-5">
+    <div class="container-fluid my-5 bg-body-secondary bg-opacity-75 text-light">
+        <div class="container-fluid py-5">
+            <h1 class="display-3 fw-bold">Welcome to Stormgate Benchmarker!</h1>
+            <p class="lead fs-3 col-md-8">Create your own customized benchmarks to hone in your timing attacks.
+            SG Benchmarker takes the stress out of benchmarking your build orders by helping you
+            track and organize your matches all in one convenient app. The path to improvement is not always easy, but SG Benchmarker will make the journey more enjoyable and
+            efficient.</p>
+            <p class="fs-3">Stop using those spreadsheets and get benching!</p>
+            <hr>
+            <p class="fs-4">Start your journey today: <%= link_to 'Sign Up', new_user_registration_path %></p>
+            <p class="fs-4">Already a member? <%= link_to 'Sign In', new_user_session_path %></p>
+        </div>
+    </div>
+</div>
