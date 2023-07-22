@@ -1,0 +1,7 @@
+<% provide(:title, "#{@user.username} | Benchmarks | #{@attack_benchmark.id}") %>
+
+<div class="m-4"><%= link_to 'Back to benchmarks', user_attack_benchmarks_path(@user) %></div>
+
+<div class="container-fluid my-5">
+    <%= render @attack_benchmark %>
+</div>

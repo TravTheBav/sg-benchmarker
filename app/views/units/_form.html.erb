@@ -1,0 +1,20 @@
+<%= turbo_frame_tag "unit_#{form.index}" do %>
+  <%= form.hidden_field :id %>
+  
+  <div>
+    <%= form.label :unit_type, "Unit", style: "display: block", class: "fs-4" %>
+    <%= form.text_field :unit_type, class: "form-control form-control-lg" %>
+  </div>
+  <div>
+    <%= form.label :quantity, style: "display: block", class: "fs-4" %>
+    <%= form.number_field :quantity, in: 1..200, step: 1, class: "form-control form-control-lg" %>
+  </div>
+
+  <%= form.submit "Remove",
+      class: "btn btn-danger my-2",
+      formaction: unit_path(form.index, form.object.id),
+      formmethod: :delete,
+      formnovalidate: true,
+      data: { turbo_frame: "unit_#{form.index}" } %>
+  <hr/>
+<% end %>

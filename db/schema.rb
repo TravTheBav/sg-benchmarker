@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_22_223011) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_22_234051) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attack_benchmarks", force: :cascade do |t|
+    t.time "time"
+    t.string "map"
+    t.text "notes"
+    t.string "match_outcome"
+    t.string "build_order"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_attack_benchmarks_on_user_id"
+  end
 
   create_table "build_order_steps", force: :cascade do |t|
     t.string "supply"
@@ -34,6 +46,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_22_223011) do
     t.index ["user_id"], name: "index_build_orders_on_user_id"
   end
 
+  create_table "units", force: :cascade do |t|
+    t.string "unit_type"
+    t.integer "quantity"
+    t.bigint "attack_benchmark_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attack_benchmark_id"], name: "index_units_on_attack_benchmark_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -48,6 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_22_223011) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attack_benchmarks", "users"
   add_foreign_key "build_order_steps", "build_orders"
   add_foreign_key "build_orders", "users"
+  add_foreign_key "units", "attack_benchmarks"
 end

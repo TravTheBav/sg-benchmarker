@@ -1,0 +1,7 @@
+<% provide(:title, "#{@user.username} | Benchmarks | New") %>
+
+<div class="m-4"><%= link_to "Back to benchmarks", user_attack_benchmarks_path(@user) %></div>
+
+<h1 class="mt-4 display-4 text-center">New benchmark</h1>
+
+<%= render "form", attack_benchmark: @attack_benchmark %>

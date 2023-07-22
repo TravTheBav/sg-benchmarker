@@ -1,0 +1,16 @@
+<%= fields model: @attack_benchmark do |form| %>
+    <%= form.fields_for :units, child_index: params[:index] do |unit_form| %>
+        <%= turbo_stream.replace "add-unit" do %>
+            <%= form.submit "Add unit",
+                class: "btn btn-primary my-2",
+                formaction: unit_path(unit_form.index.to_i + 1),
+                formmethod: :post,
+                formnovalidate: true,
+                id: "add-unit" %>
+        <% end %>
+
+        <%= turbo_stream.append "units" do %>
+            <%= render "form", form: unit_form %>
+        <% end %>
+    <% end %>
+<% end %>

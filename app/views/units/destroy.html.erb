@@ -1,0 +1,8 @@
+<%= fields model: @attack_benchmark do |form| %>
+    <%= form.fields_for :units, child_index: params[:index] do |unit_form| %>
+        <%= turbo_frame_tag "unit_#{unit_form.index}" do %>
+            <%= unit_form.hidden_field :id, value: params[:id] %>
+            <%= unit_form.hidden_field :_destroy, value: true %>
+        <% end %>
+    <% end %>
+<% end %>

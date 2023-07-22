@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # user routes with scoped resources
   resources :users, only: [:show] do
     resources :build_orders
+    resources :attack_benchmarks
   end
 
   get 'users/:id/account_info', to: 'users#account_info', as: :show_account_info
@@ -19,6 +20,14 @@ Rails.application.routes.draw do
     member do
       delete '(:id)' => "build_order_steps#destroy", as: ""
       post '/' => "build_order_steps#create"
+    end
+  end
+
+  # routes for adding and deleting benchmark units
+  resources :units, only: [], param: :index do
+    member do
+      delete '(:id)' => "units#destroy", as: ""
+      post '/' => "units#create"
     end
   end
 end
