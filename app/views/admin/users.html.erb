@@ -1,0 +1,30 @@
+<% provide(:title, "Admin | Users") %>
+
+<div class="container my-5">
+    <h1 class="text-center">Administrator</h1>
+    <%= render 'admin/nav_links' %>
+    <div class="table-responsive">
+        <%= paginate @users, theme: 'bootstrap-5', pagination_class: 'flex-wrap justify-content-center' %>
+        <table class="table table-responsive table-dark table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Created On</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @users.each do |user| %>
+                    <tr>
+                        <th scope="row"><%= user.id %></th>
+                        <td><%= link_to user.username, user_path(user) %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.created_at.strftime("%m/%d/%Y") %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <%= paginate @users, theme: 'bootstrap-5', pagination_class: 'flex-wrap justify-content-center' %>
+    </div>
+</div>

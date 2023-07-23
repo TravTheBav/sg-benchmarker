@@ -1,0 +1,28 @@
+<% provide(:title, "Admin | Attack Benchmarks") %>
+
+<div class="container my-5">
+    <h1 class="text-center">Administrator</h1>
+    <%= render 'admin/nav_links' %>
+    <div class="table-responsive">
+        <%= paginate @attack_benchmarks, theme: 'bootstrap-5', pagination_class: 'flex-wrap justify-content-center' %>
+        <table class="table table-responsive table-dark table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Created On</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @attack_benchmarks.each do |attack_benchmark| %>
+                    <tr>
+                        <th scope="row"><%= link_to attack_benchmark.id, user_attack_benchmark_path(attack_benchmark.user, attack_benchmark) %></th>
+                        <td><%= link_to attack_benchmark.user.username, user_path(attack_benchmark.user) %></td>
+                        <td><%= attack_benchmark.created_at.strftime("%m/%d/%Y") %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <%= paginate @attack_benchmarks, theme: 'bootstrap-5', pagination_class: 'flex-wrap justify-content-center' %>
+    </div>
+</div>

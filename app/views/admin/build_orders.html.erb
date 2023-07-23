@@ -1,0 +1,30 @@
+<% provide(:title, "Admin | Build Orders") %>
+
+<div class="container my-5">
+    <h1 class="text-center">Administrator</h1>
+    <%= render 'admin/nav_links' %>
+    <div class="table-responsive">
+        <%= paginate @build_orders, theme: 'bootstrap-5', pagination_class: 'flex-wrap justify-content-center' %>
+        <table class="table table-responsive table-dark table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Created On</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @build_orders.each do |build_order| %>
+                    <tr>
+                        <th scope="row"><%= link_to build_order.id, user_build_order_path(build_order.user, build_order) %></th>
+                        <td><%= build_order.name %></td>
+                        <td><%= link_to build_order.user.username, user_path(build_order.user) %></td>
+                        <td><%= build_order.created_at.strftime("%m/%d/%Y") %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <%= paginate @build_orders, theme: 'bootstrap-5', pagination_class: 'flex-wrap justify-content-center' %>
+    </div>
+</div>

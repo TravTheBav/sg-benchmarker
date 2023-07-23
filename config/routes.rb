@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  authenticated :user, ->(user) { user.admin? } do
+    get 'admin', to: 'admin#index'
+    get 'admin/users'
+    get 'admin/build_orders'
+    get 'admin/attack_benchmarks'
+  end
+
   devise_for :users
 
   root to: 'static_pages#landing'
