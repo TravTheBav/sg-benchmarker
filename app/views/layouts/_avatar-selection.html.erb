@@ -1,0 +1,15 @@
+<div class="modal fade" id="avatarSelectionModal" tabindex="-1" aria-labelledby="avatarSelectionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id=avatarSelectionModalLabel>Pick an avatar</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body container d-flex flex-wrap gap-3">
+        <% @avatars.each do |avt| %>
+          <%= image_tag("avatars/#{avt.filename}", class: "user-avatar") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
