@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_22_234051) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_22_164039) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_22_234051) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_attack_benchmarks_on_user_id"
+  end
+
+  create_table "avatars", force: :cascade do |t|
+    t.string "filename"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "build_order_steps", force: :cascade do |t|
@@ -44,6 +50,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_22_234051) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_build_orders_on_user_id"
+  end
+
+  create_table "profile_pictures", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "avatar_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["avatar_id"], name: "index_profile_pictures_on_avatar_id"
+    t.index ["user_id"], name: "index_profile_pictures_on_user_id"
   end
 
   create_table "units", force: :cascade do |t|
@@ -72,5 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_22_234051) do
   add_foreign_key "attack_benchmarks", "users"
   add_foreign_key "build_order_steps", "build_orders"
   add_foreign_key "build_orders", "users"
+  add_foreign_key "profile_pictures", "avatars"
+  add_foreign_key "profile_pictures", "users"
   add_foreign_key "units", "attack_benchmarks"
 end

@@ -1,6 +1,9 @@
 <% provide(:title, "#{@user.username} | Dashboard") %>
 
-<h1 class="my-5 display-4 text-center"><%= @user.username %></h1>
+<header class="d-flex justify-content-center align-items-center gap-3">
+    <h1 class="my-5 display-4 text-center"><%= @user.username %></h1>
+    <%= image_tag("avatars/#{@user.get_avatar}", class: "user-avatar") %>
+</header>
 
 <div class="container-fluid my-5">
     <div class="row my-5 justify-content-evenly">

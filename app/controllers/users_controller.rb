@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     load_and_authorize_resource :user
 
-    def show  
+    def show
     end
 
     def account_info
