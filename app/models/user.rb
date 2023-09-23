@@ -16,6 +16,6 @@ class User < ApplicationRecord
   def get_avatar
     return 'default.png' unless avatar
     
-    avatar
+    avatar.filename
   end
 end

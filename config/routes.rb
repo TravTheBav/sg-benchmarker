@@ -37,4 +37,7 @@ Rails.application.routes.draw do
       post '/' => "units#create"
     end
   end
+
+  # create route for profile pictures
+  resources :profile_pictures, only: [:create]
 end

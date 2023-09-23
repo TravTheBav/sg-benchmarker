@@ -1,5 +1,7 @@
 <% provide(:title, "#{@user.username} | Dashboard") %>
 
+<%= render "layouts/avatar-selection" %>
+
 <header class="d-flex justify-content-center align-items-center gap-3">
     <h1 class="my-5 display-4 text-center"><%= @user.username %></h1>
     <button class="image-button-wrapper" type="button" data-bs-toggle="modal" data-bs-target="#avatarSelectionModal">
